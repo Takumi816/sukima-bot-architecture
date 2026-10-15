@@ -1,0 +1,20 @@
+graph LR
+    sukima-bot["SUKIMA Bot\nGAS Web App"]
+    line-messaging["LINE Messaging API\napi.line.me"]
+    stripe-api["Stripe\napi.stripe.com / Payment Link / Portal"]
+    gemini-llm["Gemini API\ngenerativelanguage.googleapis.com"]
+    user-ical["User iCal URLs\nGoogleカレンダー等"]
+    japan-holidays["Japan Holiday Calendar\nja.japanese#holiday"]
+    cloudflare-relay["Cloudflare Worker Relay\n(前段中継)"]
+    cloudflare-relay -->|"Stripe Webhookを中継"| sukima-bot
+    line-messaging -->|"Webhook(メッセージ/follow)"| sukima-bot
+    sukima-bot -->|"Reply/Push/Profile"| line-messaging
+    stripe-api -->|"checkout完了/解約イベント"| cloudflare-relay
+    sukima-bot -->|"セッション/サブスク再取得で検証"| stripe-api
+    sukima-bot -->|"意図解析・日付解釈・ログ評価"| gemini-llm
+    sukima-bot -->|"ICS取得(UrlFetchApp)"| user-ical
+    sukima-bot -->|"CalendarAppで祝日取得"| japan-holidays
+    classDef external fill:#585b70,stroke:#585b70,color:#cdd6f4
+    classDef entry fill:#89b4fa,stroke:#89b4fa,color:#1e1e2e
+    class line-messaging,stripe-api,gemini-llm,user-ical,japan-holidays,cloudflare-relay external
+    class sukima-bot entry

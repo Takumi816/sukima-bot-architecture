@@ -1,0 +1,39 @@
+graph TD
+    line-platform["LINE Platform\n(外部)"]
+    stripe-platform["Stripe\n(外部)"]
+    webhook-entry["Webhook Entry\nMain.gs"]
+    intent-dispatcher["Intent Dispatcher\nIntentDispatcher.gs"]
+    access-billing["Access & Billing\nUserSettings.gs / StripeBilling.gs"]
+    intent-analysis["Intent Analysis\nNLProcessor.gs"]
+    feature-handlers["Feature Handlers\nFreeSlotsHandler.gs / DateMatcher.gs / Handlers.gs"]
+    date-parsing["Date Parsing\nDateParser.gs / DateRangeExtractor.gs"]
+    calendar-engine["Calendar Engine\nCalendarSource.gs / CalendarUtils.gs / ICalParser.gs"]
+    line-client["LINE API Client\nLineApi.gs"]
+    training-log["Training Log & Eval\nTrainingDataLogger.gs / LogEvaluator.gs"]
+    gemini-api["Gemini API\n(外部)"]
+    ical-feeds["iCal Feeds\n(外部)"]
+    sheets-store["Google Sheets / Script Properties\n(永続化)"]
+
+    line-platform -->|"POST Webhook(LINEイベント)"| webhook-entry
+    stripe-platform -->|"POST Webhook(決済イベント)"| webhook-entry
+    webhook-entry -->|"LINEイベントを委譲"| intent-dispatcher
+    webhook-entry -->|"Stripeイベントを委譲"| access-billing
+    intent-dispatcher -->|"利用権限チェック"| access-billing
+    intent-dispatcher -->|"意図解析"| intent-analysis
+    intent-dispatcher -->|"意図別に実行"| feature-handlers
+    intent-analysis -->|"複雑な文のみ"| gemini-api
+    feature-handlers -->|"日付抽出・解釈"| date-parsing
+    date-parsing -->|"曖昧表現のフォールバック"| gemini-api
+    feature-handlers -->|"空き枠計算"| calendar-engine
+    calendar-engine -->|"ICS取得"| ical-feeds
+    intent-dispatcher -->|"返信送信"| line-client
+    line-client -->|"Reply/Push API"| line-platform
+    line-client -->|"学習ログ記録"| training-log
+    access-billing -->|"ホワイトリスト/申請/ユーザー設定"| sheets-store
+    training-log -->|"マスク済みログ追記"| sheets-store
+    classDef external fill:#585b70,stroke:#585b70,color:#cdd6f4
+    classDef entry fill:#89b4fa,stroke:#89b4fa,color:#1e1e2e
+    classDef store fill:#a6e3a1,stroke:#a6e3a1,color:#1e1e2e
+    class line-platform,stripe-platform,gemini-api,ical-feeds external
+    class webhook-entry entry
+    class sheets-store store

@@ -1,0 +1,20 @@
+graph LR
+    script-properties["Script Properties\nAPIキー・ユーザー設定"]
+    script-cache["Script Cache\niCal/NLP/会話コンテキスト"]
+    whitelist-sheet["Whitelist & Request Sheets"]
+    training-sheet["Training Log Sheet"]
+    user-settings-code["UserSettings.gs"]
+    ical-code["ICalParser.gs"]
+    nlp-code["NLProcessor.gs"]
+    logger-code["TrainingDataLogger.gs"]
+    billing-code["StripeBilling.gs"]
+    user-settings-code -->|"設定JSONの保存/読込"| script-properties
+    user-settings-code -->|"会話コンテキスト(短期)"| script-cache
+    user-settings-code -->|"承認状態の判定/更新"| whitelist-sheet
+    billing-code -->|"決済結果を申請行へ反映"| whitelist-sheet
+    ical-code -->|"ICS解析結果3分キャッシュ"| script-cache
+    nlp-code -->|"Gemini結果キャッシュ"| script-cache
+    logger-code -->|"マスク済みログ追記"| training-sheet
+    logger-code -->|"匿名化鍵の取得"| script-properties
+    classDef store fill:#a6e3a1,stroke:#a6e3a1,color:#1e1e2e
+    class script-properties,script-cache,whitelist-sheet,training-sheet store

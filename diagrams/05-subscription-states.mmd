@@ -1,0 +1,10 @@
+graph LR
+    unregistered["Unregistered\n未登録"]
+    requested["Requested\n申請済み(決済待ち)"]
+    stripe-active["STRIPE_ACTIVE\n承認・利用可"]
+    stripe-canceled["STRIPE_CANCELED\n失効・利用不可"]
+    unregistered -->|"「登録申請」でPayment Link発行"| requested
+    requested -->|"checkout.session.completed を検証"| stripe-active
+    stripe-active -->|"customer.subscription.deleted を検証"| stripe-canceled
+    stripe-canceled -->|"再申請(トライアルなしリンク)"| requested
+    stripe-active -->|"「解約」でポータル案内"| stripe-active

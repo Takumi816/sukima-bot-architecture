@@ -1,0 +1,22 @@
+graph LR
+    do-post["doPost\nMain.gs"]
+    stripe-branch["Stripe Branch\nhandleStripeWebhook"]
+    dispatch["dispatch\nIntentDispatcher.gs"]
+    access-guard["Access Guard\ncheckUserAccess"]
+    command-handling["Command Handling\n固定コマンド"]
+    intent-resolution["Intent Resolution\nルールベース/Gemini"]
+    handler-execution["Handler Execution\nFreeSlots / DateMatch"]
+    reply["Reply\nreplyToLine"]
+    error-fallback["Error Fallback\ngenerateFriendlyError"]
+    do-post -->|"object==='event'"| stripe-branch
+    do-post -->|"events配列を順次処理"| dispatch
+    dispatch -->|"テキストメッセージ"| access-guard
+    access-guard -->|"blockedなら案内で終了"| reply
+    access-guard -->|"許可"| command-handling
+    command-handling -->|"非コマンド"| intent-resolution
+    intent-resolution -->|"type別"| handler-execution
+    handler-execution -->|"返信文"| reply
+    dispatch -.->|"例外"| error-fallback
+    error-fallback -->|"親切なエラー文"| reply
+    classDef entry fill:#89b4fa,stroke:#89b4fa,color:#1e1e2e
+    class do-post entry

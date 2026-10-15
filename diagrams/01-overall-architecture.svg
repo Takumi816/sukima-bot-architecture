@@ -1,0 +1,184 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1437.8304166666667 904.2999999999998" width="1437.8304166666667" height="904.2999999999998" style="--bg:#ffffff;--fg:#1f2328;--line:#d1d9e0;--accent:#0969da;--muted:#59636e;background:var(--bg)">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap');
+  text { font-family: 'Inter', system-ui, sans-serif; }
+  svg {
+    /* Derived from --bg and --fg (overridable via --line, --accent, etc.) */
+    --_text:          var(--fg);
+    --_text-sec:      var(--muted, color-mix(in srgb, var(--fg) 60%, var(--bg)));
+    --_text-muted:    var(--muted, color-mix(in srgb, var(--fg) 40%, var(--bg)));
+    --_text-faint:    color-mix(in srgb, var(--fg) 25%, var(--bg));
+    --_line:          var(--line, color-mix(in srgb, var(--fg) 50%, var(--bg)));
+    --_arrow:         var(--accent, color-mix(in srgb, var(--fg) 85%, var(--bg)));
+    --_node-fill:     var(--surface, color-mix(in srgb, var(--fg) 3%, var(--bg)));
+    --_node-stroke:   var(--border, color-mix(in srgb, var(--fg) 20%, var(--bg)));
+    --_group-fill:    var(--bg);
+    --_group-hdr:     color-mix(in srgb, var(--fg) 5%, var(--bg));
+    --_inner-stroke:  color-mix(in srgb, var(--fg) 12%, var(--bg));
+    --_key-badge:     color-mix(in srgb, var(--fg) 10%, var(--bg));
+  }
+</style>
+<defs>
+  <marker id="arrowhead" markerWidth="8" markerHeight="5" refX="7" refY="2.5" orient="auto">
+    <polygon points="0 0, 8 2.5, 0 5" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+  <marker id="arrowhead-start" markerWidth="8" markerHeight="5" refX="1" refY="2.5" orient="auto-start-reverse">
+    <polygon points="8 0, 0 2.5, 8 5" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+</defs>
+<polyline class="edge" data-from="line-platform" data-to="webhook-entry" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="POST Webhook(LINEイベント)" points="410.97400000000016,400.00000000000006 410.97400000000016,490.30000000000007 323.5213333333335,490.30000000000007 323.5213333333335,500.30000000000007" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="stripe-platform" data-to="webhook-entry" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="POST Webhook(決済イベント)" points="208.19000000000017,400.00000000000006 208.19000000000005,490.30000000000007 257.34533333333343,490.30000000000007 257.34533333333343,500.30000000000007" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="webhook-entry" data-to="intent-dispatcher" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="LINEイベントを委譲" points="290.4333333333335,500.30000000000007 290.4333333333335,490.30000000000007 298.9040000000001,490.30000000000007 298.9040000000001,121.80000000000001 447.5225833333335,121.80000000000001 447.5225833333335,93.80000000000001" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="webhook-entry" data-to="access-billing" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Stripeイベントを委譲" points="290.4333333333335,554.1 290.4333333333334,644.4 234.68016666666676,644.4 234.68016666666676,664.4" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="intent-dispatcher" data-to="access-billing" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="利用権限チェック" points="421.5119166666668,93.80000000000001 421.5119166666668,109.80000000000001 92.5,109.80000000000001 92.5,644.4 156.72383333333346,644.4 156.72383333333346,664.4" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="intent-dispatcher" data-to="intent-analysis" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="意図解析" points="525.5545833333335,93.80000000000001 525.5545833333335,105.80000000000001 1326.4674166666668,105.80000000000001 1326.4674166666668,250.4" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="intent-dispatcher" data-to="feature-handlers" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="意図別に実行" points="499.54391666666686,93.80000000000001 499.54391666666686,117.80000000000001 948.8347500000001,117.80000000000001 948.8347500000001,192.1" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="intent-analysis" data-to="gemini-api" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="複雑な文のみ" points="1326.4674166666668,304.20000000000005 1326.4674166666668,486.30000000000007 1242.2478333333333,486.30000000000007 1242.2478333333333,500.30000000000007" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="feature-handlers" data-to="date-parsing" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="日付抽出・解釈" points="1007.0789166666667,245.9 1007.0789166666667,271.90000000000003 1119.0800000000002,271.90000000000003 1119.08,346.20000000000005" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="date-parsing" data-to="gemini-api" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="曖昧表現のフォールバック" points="1119.08,400.00000000000006 1119.08,486.30000000000007 1207.7635,486.30000000000007 1207.7635,500.30000000000007" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="feature-handlers" data-to="calendar-engine" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="空き枠計算" points="890.5905833333334,245.9 890.5905833333334,271.90000000000003 778.5895000000002,271.90000000000003 778.5895,346.20000000000005" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="calendar-engine" data-to="ical-feeds" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="ICS取得" points="778.5895,400.00000000000006 778.5895,500.30000000000007" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="intent-dispatcher" data-to="line-client" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="返信送信" points="473.5332500000002,93.80000000000001 473.53325000000007,192.1" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="line-client" data-to="line-platform" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Reply/Push API" points="451.9685833333334,245.9 451.9685833333334,275.90000000000003 410.97400000000016,275.90000000000003 410.97400000000016,346.20000000000005" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="line-client" data-to="training-log" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="学習ログ記録" points="495.09791666666683,245.9 495.09791666666683,397.70000000000005 536.0925000000002,397.70000000000005 536.0925000000002,664.4" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="access-billing" data-to="sheets-store" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="ホワイトリスト/申請/ユーザー設定" points="195.7020000000001,718.1999999999999 195.70200000000023,798.4999999999999 294.3131666666668,798.4999999999999 294.3131666666668,810.4999999999999" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="training-log" data-to="sheets-store" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="マスク済みログ追記" points="536.0925000000002,718.1999999999999 536.0925000000002,798.4999999999999 373.25750000000016,798.4999999999999 373.25750000000016,810.4999999999999" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<g class="edge-label" data-from="line-platform" data-to="webhook-entry" data-label="POST Webhook(LINEイベント)">
+  <rect x="325.97400000000016" y="437.00000000000006" width="169.714" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="410.83100000000013" y="452.15000000000003" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">POST Webhook(LINEイベント)</text>
+</g>
+<g class="edge-label" data-from="stripe-platform" data-to="webhook-entry" data-label="POST Webhook(決済イベント)">
+  <rect x="123.19000000000007" y="437.00000000000006" width="169.71400000000003" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="208.04700000000008" y="452.15000000000003" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">POST Webhook(決済イベント)</text>
+</g>
+<g class="edge-label" data-from="webhook-entry" data-to="intent-dispatcher" data-label="LINEイベントを委譲">
+  <rect x="236.40400000000014" y="282.90000000000003" width="124.57000000000001" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="298.68900000000014" y="298.05" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">LINEイベントを委譲</text>
+</g>
+<g class="edge-label" data-from="webhook-entry" data-to="access-billing" data-label="Stripeイベントを委譲">
+  <rect x="225.4333333333334" y="591.1" width="129.322" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="290.0943333333334" y="606.25" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">Stripeイベントを委譲</text>
+</g>
+<g class="edge-label" data-from="intent-dispatcher" data-to="access-billing" data-label="利用権限チェック">
+  <rect x="35.99999999999999" y="404.70000000000005" width="112.69000000000001" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="92.345" y="419.85" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">利用権限チェック</text>
+</g>
+<g class="edge-label" data-from="intent-dispatcher" data-to="intent-analysis" data-label="意図解析">
+  <rect x="1293.4674166666668" y="185.1" width="65.17" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="1326.0524166666669" y="200.25" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">意図解析</text>
+</g>
+<g class="edge-label" data-from="intent-dispatcher" data-to="feature-handlers" data-label="意図別に実行">
+  <rect x="904.3347500000001" y="124.80000000000001" width="88.93" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="948.7997500000001" y="139.95000000000002" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">意図別に実行</text>
+</g>
+<g class="edge-label" data-from="intent-analysis" data-to="gemini-api" data-label="複雑な文のみ">
+  <rect x="1281.9674166666668" y="433.00000000000006" width="88.93" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="1326.4324166666668" y="448.15000000000003" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">複雑な文のみ</text>
+</g>
+<g class="edge-label" data-from="feature-handlers" data-to="date-parsing" data-label="日付抽出・解釈">
+  <rect x="1068.5800000000002" y="278.90000000000003" width="100.81000000000002" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="1118.9850000000001" y="294.05" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">日付抽出・解釈</text>
+</g>
+<g class="edge-label" data-from="date-parsing" data-to="gemini-api" data-label="曖昧表現のフォールバック">
+  <rect x="1038.58" y="433.00000000000006" width="160.21" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="1118.685" y="448.15000000000003" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">曖昧表現のフォールバック</text>
+</g>
+<g class="edge-label" data-from="feature-handlers" data-to="calendar-engine" data-label="空き枠計算">
+  <rect x="739.5895000000002" y="278.90000000000003" width="77.05000000000001" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="778.1145000000001" y="294.05" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">空き枠計算</text>
+</g>
+<g class="edge-label" data-from="calendar-engine" data-to="ical-feeds" data-label="ICS取得">
+  <rect x="749.0895000000002" y="433.00000000000006" width="58.042" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="778.1105000000001" y="448.15000000000003" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">ICS取得</text>
+</g>
+<g class="edge-label" data-from="intent-dispatcher" data-to="line-client" data-label="返信送信">
+  <rect x="440.53325000000007" y="128.8" width="65.17" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="473.11825000000005" y="143.95000000000002" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">返信送信</text>
+</g>
+<g class="edge-label" data-from="line-client" data-to="line-platform" data-label="Reply/Push API">
+  <rect x="364.97400000000016" y="282.90000000000003" width="91.30600000000001" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="410.6270000000002" y="298.05" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">Reply/Push API</text>
+</g>
+<g class="edge-label" data-from="line-client" data-to="training-log" data-label="学習ログ記録">
+  <rect x="491.5925000000002" y="404.70000000000005" width="88.93" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="536.0575000000002" y="419.85" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">学習ログ記録</text>
+</g>
+<g class="edge-label" data-from="access-billing" data-to="sheets-store" data-label="ホワイトリスト/申請/ユーザー設定">
+  <rect x="94.70200000000023" y="745.1999999999999" width="201.79000000000002" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="195.59700000000024" y="760.3499999999999" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">ホワイトリスト/申請/ユーザー設定</text>
+</g>
+<g class="edge-label" data-from="training-log" data-to="sheets-store" data-label="マスク済みログ追記">
+  <rect x="473.59250000000014" y="761.1999999999999" width="124.57000000000001" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="535.8775000000002" y="776.3499999999999" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">マスク済みログ追記</text>
+</g>
+<g class="node" data-id="line-platform" data-label="LINE Platform
+(外部)" data-shape="rectangle">
+  <rect x="350.3555000000001" y="346.20000000000005" width="121.23700000000001" height="53.800000000000004" rx="0" ry="0" fill="#585b70" stroke="#585b70" stroke-width="0.75" />
+  <text x="410.9740000000001" y="373.1" text-anchor="middle" font-size="13" font-weight="500" fill="#cdd6f4"><tspan x="410.9740000000001" dy="-3.9000000000000012">LINE Platform</tspan><tspan x="410.9740000000001" dy="16.900000000000002">(外部)</tspan></text>
+</g>
+<g class="node" data-id="stripe-platform" data-label="Stripe
+(外部)" data-shape="rectangle">
+  <rect x="168.69000000000017" y="346.20000000000005" width="79" height="53.800000000000004" rx="0" ry="0" fill="#585b70" stroke="#585b70" stroke-width="0.75" />
+  <text x="208.19000000000017" y="373.1" text-anchor="middle" font-size="13" font-weight="500" fill="#cdd6f4"><tspan x="208.19000000000017" dy="-3.9000000000000012">Stripe</tspan><tspan x="208.19000000000017" dy="16.900000000000002">(外部)</tspan></text>
+</g>
+<g class="node" data-id="webhook-entry" data-label="Webhook Entry
+Main.gs" data-shape="rectangle">
+  <rect x="224.25733333333346" y="500.30000000000007" width="132.352" height="53.800000000000004" rx="0" ry="0" fill="#89b4fa" stroke="#89b4fa" stroke-width="0.75" />
+  <text x="290.43333333333345" y="527.2" text-anchor="middle" font-size="13" font-weight="500" fill="#1e1e2e"><tspan x="290.43333333333345" dy="-3.9000000000000012">Webhook Entry</tspan><tspan x="290.43333333333345" dy="16.900000000000002">Main.gs</tspan></text>
+</g>
+<g class="node" data-id="intent-dispatcher" data-label="Intent Dispatcher
+IntentDispatcher.gs" data-shape="rectangle">
+  <rect x="395.50125000000014" y="40" width="156.06400000000002" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="473.5332500000002" y="66.9" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="473.5332500000002" dy="-3.9000000000000012">Intent Dispatcher</tspan><tspan x="473.5332500000002" dy="16.900000000000002">IntentDispatcher.gs</tspan></text>
+</g>
+<g class="node" data-id="access-billing" data-label="Access &amp; Billing
+UserSettings.gs / StripeBilling.gs" data-shape="rectangle">
+  <rect x="78.76750000000015" y="664.4" width="233.86899999999994" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="195.7020000000001" y="691.3" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="195.7020000000001" dy="-3.9000000000000012">Access &amp; Billing</tspan><tspan x="195.7020000000001" dy="16.900000000000002">UserSettings.gs / StripeBilling.gs</tspan></text>
+</g>
+<g class="node" data-id="intent-analysis" data-label="Intent Analysis
+NLProcessor.gs" data-shape="rectangle">
+  <rect x="1255.1044166666668" y="250.4" width="142.726" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="1326.4674166666668" y="277.3" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="1326.4674166666668" dy="-3.9000000000000012">Intent Analysis</tspan><tspan x="1326.4674166666668" dy="16.900000000000002">NLProcessor.gs</tspan></text>
+</g>
+<g class="node" data-id="feature-handlers" data-label="Feature Handlers
+FreeSlotsHandler.gs / DateMatcher.gs / Handlers.gs" data-shape="rectangle">
+  <rect x="774.1022500000001" y="192.1" width="349.4649999999999" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="948.8347500000001" y="219" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="948.8347500000001" dy="-3.9000000000000012">Feature Handlers</tspan><tspan x="948.8347500000001" dy="16.900000000000002">FreeSlotsHandler.gs / DateMatcher.gs / Handlers.gs</tspan></text>
+</g>
+<g class="node" data-id="date-parsing" data-label="Date Parsing
+DateParser.gs / DateRangeExtractor.gs" data-shape="rectangle">
+  <rect x="980.6565" y="346.20000000000005" width="276.847" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="1119.08" y="373.1" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="1119.08" dy="-3.9000000000000012">Date Parsing</tspan><tspan x="1119.08" dy="16.900000000000002">DateParser.gs / DateRangeExtractor.gs</tspan></text>
+</g>
+<g class="node" data-id="calendar-engine" data-label="Calendar Engine
+CalendarSource.gs / CalendarUtils.gs / ICalParser.gs" data-shape="rectangle">
+  <rect x="600.5225000000002" y="346.20000000000005" width="356.1339999999999" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="778.5895" y="373.1" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="778.5895" dy="-3.9000000000000012">Calendar Engine</tspan><tspan x="778.5895" dy="16.900000000000002">CalendarSource.gs / CalendarUtils.gs / ICalParser.gs</tspan></text>
+</g>
+<g class="node" data-id="line-client" data-label="LINE API Client
+LineApi.gs" data-shape="rectangle">
+  <rect x="408.8392500000001" y="192.1" width="129.388" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="473.5332500000001" y="219" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="473.5332500000001" dy="-3.9000000000000012">LINE API Client</tspan><tspan x="473.5332500000001" dy="16.900000000000002">LineApi.gs</tspan></text>
+</g>
+<g class="node" data-id="training-log" data-label="Training Log &amp; Eval
+TrainingDataLogger.gs / LogEvaluator.gs" data-shape="rectangle">
+  <rect x="391.7410000000002" y="664.4" width="288.703" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="536.0925000000002" y="691.3" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="536.0925000000002" dy="-3.9000000000000012">Training Log &amp; Eval</tspan><tspan x="536.0925000000002" dy="16.900000000000002">TrainingDataLogger.gs / LogEvaluator.gs</tspan></text>
+</g>
+<g class="node" data-id="gemini-api" data-label="Gemini API
+(外部)" data-shape="rectangle">
+  <rect x="1173.2791666666667" y="500.30000000000007" width="103.453" height="53.800000000000004" rx="0" ry="0" fill="#585b70" stroke="#585b70" stroke-width="0.75" />
+  <text x="1225.0056666666667" y="527.2" text-anchor="middle" font-size="13" font-weight="500" fill="#cdd6f4"><tspan x="1225.0056666666667" dy="-3.9000000000000012">Gemini API</tspan><tspan x="1225.0056666666667" dy="16.900000000000002">(外部)</tspan></text>
+</g>
+<g class="node" data-id="ical-feeds" data-label="iCal Feeds
+(外部)" data-shape="rectangle">
+  <rect x="726.1220000000001" y="500.30000000000007" width="104.93499999999999" height="53.800000000000004" rx="0" ry="0" fill="#585b70" stroke="#585b70" stroke-width="0.75" />
+  <text x="778.5895" y="527.2" text-anchor="middle" font-size="13" font-weight="500" fill="#cdd6f4"><tspan x="778.5895" dy="-3.9000000000000012">iCal Feeds</tspan><tspan x="778.5895" dy="16.900000000000002">(外部)</tspan></text>
+</g>
+<g class="node" data-id="sheets-store" data-label="Google Sheets / Script Properties
+(永続化)" data-shape="rectangle">
+  <rect x="215.36883333333344" y="810.4999999999999" width="236.833" height="53.800000000000004" rx="0" ry="0" fill="#a6e3a1" stroke="#a6e3a1" stroke-width="0.75" />
+  <text x="333.7853333333334" y="837.3999999999999" text-anchor="middle" font-size="13" font-weight="500" fill="#1e1e2e"><tspan x="333.7853333333334" dy="-3.9000000000000012">Google Sheets / Script Properties</tspan><tspan x="333.7853333333334" dy="16.900000000000002">(永続化)</tspan></text>
+</g>
+</svg>
